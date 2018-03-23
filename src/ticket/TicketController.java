@@ -11,7 +11,7 @@ import javafx.application.Platform;
 /**
  *
  * @author Matthew Rodriguez
- * @date February, 23, 2018
+ * Date February, 23, 2018
  */
 public class TicketController 
 {
@@ -19,19 +19,36 @@ public class TicketController
     TicketView ticketView;
     int index = 0;
     
+    /**
+     * This is the controller which handles all of the buttons in our GUI for the ticket citation.
+     * It requires two main parameters: ticketModel and ticketView.
+     * The attachHandlers() function will carryout all of the button implementations. 
+     * @param ticketModel The ticket model database structure
+     * @param ticketView The GUI view for the program
+     */
     public TicketController(TicketModel ticketModel, TicketView ticketView)
     {
         this.ticketModel=ticketModel;
         this.ticketView=ticketView;
         attachHandlers();
     }
-    
+    /**
+     * The attachHandlers() function will handle all of the actions each of the buttons will do in the TicketCitationMVC program.
+     * There are currently five buttons that are implemented into the program.
+     * There is brief description of what each button does.
+     */
     public void attachHandlers()
     {
-    // Takes the data entered from the TextFields and stores them into Strings variables
-    // The boolean variable paid ticket is automatically set to false
-    // A Ticket object called newTicket will store all String data into the object and add it to ticketDB in ticketModel.
-    // All the Textfields will be cleared out with the function clearFields() in ticketView.  
+     
+        /**
+         * ticketView.getAddbtn()
+         * 
+         * Takes the data entered from the TextFields and stores them into Strings variables.
+         * The boolean variable paid ticket is automatically set to false (because new tickets are unpaid).
+         * A Ticket object called newTicket will store all String data into the newTicket object and add it to ticketDB in 
+         * ticketModel.
+         * All the TextFields will be cleared out with the function clearFields() in ticketView.  
+         */
         ticketView.getAddbtn().setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -58,12 +75,14 @@ public class TicketController
             }
                
         });
-        
-    // Displays the Next Ticket object data of the Ticket ArrayList in the TextArea.
-    // Check if the current index number is less than zero.
-    // If it is then increment and update that index's object data into the TextArea.
-    // If index is already at max size limit, then re-display max size index's object data into TextArea.
-    // If the list is empty then call TicketViewNoDatabase() in ticketView to throw an extra message to the user.
+             
+    /**
+     * Displays the Next Ticket object data of the Ticket ArrayList in the TextArea.
+     * Check if the current index number is less than zero.
+     * If it is less than zero then increment the index, and update that indexes object data into the TextArea.
+     * If index is already at max size limit, then re-display max size indexes object data into TextArea.
+     * If the list is empty then call TicketViewNoDatabase() in ticketView to throw an exception message to the user.
+     */
         ticketView.getNextBtn().setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -90,13 +109,15 @@ public class TicketController
                  ticketView.TicketViewNoDataBase();
              }
             }       
-        });
-        
-    // Displays the Previous Ticket object data of the Ticket ArrayList in the TextArea.
-    // Check if the current index number is greater than zero.
-    // If it is then decrement and update that index's object data into the TextArea.
-    // If index is already at zero, then re-display index zero's object data into TextArea.
-    // If the list is empty then call TicketViewNoDatabase() in ticketView to throw an extra message to the user.
+        });      
+     
+    /**
+     * Displays the Previous Ticket object data of the Ticket ArrayList in the TextArea.
+     * Check if the current index number is greater than zero.
+     * If it is then decrement the index, and update that indexes object data into the TextArea.
+     * If index is already at zero, then re-display the index zero object data into TextArea.
+     * If the list is empty then call TicketViewNoDatabase() in ticketView to throw an exception message to the user.
+     */
         ticketView.getLastBtn().setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -125,9 +146,12 @@ public class TicketController
             }       
         });
         
-    // Toggle the boolean variable of the current index in ArrayList to true or false. 
-    // Then update the information in TextArea.
-    // If the list is empty then call TicketViewNoDatabase() in ticketView to throw an extra message to the user.
+   
+    /**
+     * Toggles the boolean variable of the current index in ArrayList to true or false.
+     * Then update the information in TextArea.
+     * If the list is empty then call TicketViewNoDatabase() in ticketView to throw an extra message to the user.
+     */
         ticketView.getPaidbtn().setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -157,7 +181,9 @@ public class TicketController
             }            
         }); 
         
-        //Exits the program.
+        /**
+         * Exits the program.
+         */
         ticketView.getExitbtn().setOnAction(new EventHandler<ActionEvent>()
         {
             @Override

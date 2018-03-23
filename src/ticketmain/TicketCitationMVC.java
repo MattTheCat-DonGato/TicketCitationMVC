@@ -11,11 +11,13 @@ import javafx.stage.Stage;
 import ticket.TicketView;
 import ticket.TicketModel;
 import ticket.TicketController;
+
 /**
  *
  * @author Matthew Rodriguez
- * @date February, 23, 2018
+ * date: February, 23, 2018
  */
+
 public class TicketCitationMVC extends Application 
 {    
     @Override

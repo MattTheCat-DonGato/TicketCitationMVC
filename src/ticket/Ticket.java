@@ -8,7 +8,7 @@ package ticket;
 /**
  *
  * @author Matthew Rodriguez
- * @date February, 23, 2018
+ * Date: February, 23, 2018
  */
 public class Ticket 
 { 
@@ -25,10 +25,29 @@ public class Ticket
     private String paymentInfo;
     private boolean paidticket;
 
+    /**
+     * This is an empty constructor for a Ticket object.
+     */
     public Ticket()
     {    
     }
-    
+ 
+    /**
+     * This is the main constructor where all the ticket data will be stored for one Ticket object. It takes in 12 parameters
+     * which are described below.
+     * @param licenseNo The license number of the vehicle
+     * @param state The state in which the ticket was issued
+     * @param permitNo The permit number of the vehicle
+     * @param vehicleModel The vehicle model brand
+     * @param violation The reason for the ticket being issued
+     * @param color The color of the vehicle
+     * @param date The date when the ticket was issued
+     * @param time The time when the ticket was issued
+     * @param location The location of where the ticket was issued
+     * @param issuedBy The person who issued the ticket
+     * @param paymentInfo The location where payment must be made.
+     * @param paidticket Checks if the ticket was paid or not (true if paid or false if not paid)
+     */  
     public Ticket(String licenseNo, String state, String permitNo, String vehicleModel, String violation, String color, String date, String time, String location, String issuedBy, String paymentInfo, boolean paidticket) {
         this.licenseNo = licenseNo;
         this.state = state;

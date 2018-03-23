@@ -14,9 +14,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.geometry.Pos;
+
 /**
  *
- * @author ILSSBM62756
+ * @author Matthew Rodriguez
  */
 public class TicketView extends GridPane
 {
@@ -476,6 +477,10 @@ public class TicketView extends GridPane
         this.ticketinformation = ticketinformation;
     }
 
+    /**
+     * Removes all of the text inserted into the TextFields.
+     * It is called when the Submit Data button has been pressed. 
+     */
     public void clearFields()
     {
         licenseTF.clear();
@@ -490,7 +495,9 @@ public class TicketView extends GridPane
         issuedbyTF.clear();
         paymentTF.clear();
     }
-       
+       /**
+        * Main GUI Startup.
+        */
     public TicketView()
     {
                 titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
@@ -510,6 +517,9 @@ public class TicketView extends GridPane
                 this.setAlignment(Pos.CENTER);
     }
     
+    /**
+     * This function is only called when there is no ticket database is currently empty.
+     */
      public void TicketViewNoDataBase()
     {
                 this.getChildren().clear();
@@ -529,7 +539,12 @@ public class TicketView extends GridPane
                 this.add(ticketinformation,3,1);
                 this.setAlignment(Pos.CENTER);
     }
-
+     
+    /**
+     * This function passes in a Ticket object as a parameter and displays the object's data into a TextArea.
+     * It also checks if the object's paidTicket variable is true or false and updates a string whether the ticket has been paid. 
+     * @param currentTicket The current ticket going to be displayed on the TextArea
+     */
     public void TicketViewUpdate(Ticket currentTicket)
     {
     String licenseNo = currentTicket.getLicenseNo();
