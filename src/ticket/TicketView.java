@@ -5,6 +5,7 @@
  */
 package ticket;
 
+import java.util.ArrayList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -18,10 +19,11 @@ import javafx.geometry.Pos;
 /**
  *
  * @author Matthew Rodriguez
+ * Date: March 23, 2018
  */
 public class TicketView extends GridPane
 {
-    private Label titleLabel = new Label("Patking Ticket Citation");    
+    private Label titleLabel = new Label("Parking Ticket Citation");    
     private Label licenseLabel = new Label("Enter License Number");
     private TextField licenseTF = new TextField();   
     private Label stateLabel = new Label("Enter State");
@@ -45,13 +47,16 @@ public class TicketView extends GridPane
     private Label paymentLabel = new Label("Enter Payment Information");
     private TextField paymentTF = new TextField();
     
-    Label copyright = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nExit Program will end the session.\nThis Graphic User Interface is written for UTRGV Purposes only.\nAll Copyrights Reserved");
+    Label copyright = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nStore Current Ticket will store the ticket data in Current Ticket Information into a file.\nStore All Tickets will grab all the tickets in the database and store them into a file.\nRead Ticket Data will go through the file of Tickets.dat and display them in the TextArea.\nExit Program will end the session.");
     Label copyright2 = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nExit Program will end the session.\nThis Graphic User Interface is written for UTRGV Purposes only.\nAll Copyrights Reserved\nThe list is empty. Try adding data first then click on Submit Ticket Data then Next.");
     
     private Button paidbtn = new Button("Toggle Paid/Unpaid");
     private Button addbtn = new Button("Submit Ticket Data");
     private Button lastBtn = new Button("<-- Previous");
     private Button nextBtn = new Button("--> Next");
+    private Button storeBtn = new Button("Store Current Ticket");
+    private Button storeallBtn = new Button("Store All Tickets");
+    private Button readDataBtn = new Button("Read Ticket File");
     private Button exitbtn = new Button("Exit Program");
     
     private Label ticketInfoDisplay = new Label("Current Ticket Information");
@@ -476,6 +481,49 @@ public class TicketView extends GridPane
     public void setTicketinformation(TextArea ticketinformation) {
         this.ticketinformation = ticketinformation;
     }
+    
+    
+    /**
+     * @return the storeBtn
+     */
+    public Button getStoreBtn() {
+        return storeBtn;
+    }
+
+    /**
+     * @param storeBtn the storeBtn to set
+     */
+    public void setStoreBtn(Button storeBtn) {
+        this.storeBtn = storeBtn;
+    }
+
+    /**
+     * @return the storeallBtn
+     */
+    public Button getStoreallBtn() {
+        return storeallBtn;
+    }
+
+    /**
+     * @param storeallBtn the storeallBtn to set
+     */
+    public void setStoreallBtn(Button storeallBtn) {
+        this.storeallBtn = storeallBtn;
+    }
+
+    /**
+     * @return the readDataBtn
+     */
+    public Button getReadDataBtn() {
+        return readDataBtn;
+    }
+
+    /**
+     * @param readDataBtn the readDataBtn to set
+     */
+    public void setReadDataBtn(Button readDataBtn) {
+        this.readDataBtn = readDataBtn;
+    }
 
     /**
      * Removes all of the text inserted into the TextFields.
@@ -510,7 +558,10 @@ public class TicketView extends GridPane
                 this.add(nextBtn,3,4);
                 this.add(lastBtn,3,5);
                 this.add(paidbtn,3,6);
-                this.add(exitbtn,3,7);
+                this.add(storeBtn,3,7);
+                this.add(storeallBtn,3,8);
+                this.add(readDataBtn,3,9);
+                this.add(exitbtn,3,10);
                 ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
                 this.add(ticketInfoDisplay,3,0);
                 this.add(ticketinformation,3,1);
@@ -533,7 +584,10 @@ public class TicketView extends GridPane
                 this.add(nextBtn,3,4);
                 this.add(lastBtn,3,5);
                 this.add(paidbtn,3,6);
-                this.add(exitbtn,3,7);
+                this.add(storeBtn,3,7);
+                this.add(storeallBtn,3,8);
+                this.add(readDataBtn,3,9);
+                this.add(exitbtn,3,10);
                 ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
                 this.add(ticketInfoDisplay,3,0);
                 this.add(ticketinformation,3,1);
@@ -541,7 +595,7 @@ public class TicketView extends GridPane
     }
      
     /**
-     * This function passes in a Ticket object as a parameter and displays the object's data into a TextArea.
+     * This function passes in a Ticket object as a parameter and displays the object's strings into a TextArea.
      * It also checks if the object's paidTicket variable is true or false and updates a string whether the ticket has been paid. 
      * @param currentTicket The current ticket going to be displayed on the TextArea
      */
@@ -582,11 +636,82 @@ public class TicketView extends GridPane
                 this.add(nextBtn,3,4);
                 this.add(lastBtn,3,5);
                 this.add(paidbtn,3,6);
-                this.add(exitbtn,3,7);
+                this.add(storeBtn,3,7);
+                this.add(storeallBtn,3,8);
+                this.add(readDataBtn,3,9);
+                this.add(exitbtn,3,10);
                 ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
                 this.add(ticketInfoDisplay,3,0);
                 ticketinformation.setText(info);
                 this.add(ticketinformation,3,1);
                 this.setAlignment(Pos.CENTER);      
     }    
+
+    /**
+     * This function takes in an ArrayList of Tickets called currentTickets and loops through each object printing 
+     * out the strings in the text area until the last object's strings are printed. If the paidticket variable is true 
+     * then the variable pt will equal: "Ticket has been paid." otherwise it will equal: "Ticket has not been paid.
+     * @param currentTickets The ArrayList of Tickets stored in the program
+     */
+    public void TicketViewUpdateAll(ArrayList<Ticket> currentTickets) 
+    {
+    String licenseNo;
+    String state;
+    String permitNo;
+    String vehicleModel;
+    String violation;
+    String color;
+    String date;
+    String time;
+    String location;
+    String issuedBy;
+    String paymentInfo;
+    Boolean paidticket;
+    String pt = "";
+    String allTickets = "";
+    
+    for (int i = 0; i < currentTickets.size(); i++)
+    {
+        Ticket current = (Ticket) currentTickets.get(i);
+        licenseNo = current.getLicenseNo();
+        state = current.getState();
+        permitNo = current.getPermitNo();
+        vehicleModel = current.getVehicleModel();
+        violation = current.getViolation();
+        color = current.getColor();
+        date = current.getDate();
+        time = current.getTime();
+        location = current.getLocation();
+        issuedBy = current.getIssuedBy();
+        paymentInfo = current.getPaymentInfo();
+        paidticket = current.isPaidticket();
+        if(paidticket == false)
+            pt = "Ticket has not been paid."; 
+        else
+            pt = "Ticket has been paid.";
+        
+        allTickets += "License Number: " + licenseNo + "\nState: " + state + "\nPermit Number: " + permitNo + "\nVehicle Model: " + vehicleModel + "\nViolation: " + violation + "\nColor of Vehicle: " + color + "\nDate of Violation: " + date + "\nTime of Violation: " + time + "\nLocation: " + location + "\nTicket Issued By: " + issuedBy + "\nPayment Information: " + paymentInfo + "\n" + pt + "\n";
+    }
+    
+                this.getChildren().clear();
+                titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
+                this.add(titleLabel, 0, 0);
+                copyright.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,20));
+                this.add(copyright, 0, 1);
+                this.add(licenseLabel, 0, 2);
+                this.addColumn(0,licenseTF,stateLabel,stateTF,permitLabel,permitTF,vehiclemodelLabel,vmTF,violationLabel,violationTF,colorLabel,colorTF,timeLabel,timeTF,dateLabel,dateTF,locationLabel,locationTF,issuedbyLabel,issuedbyTF,paymentLabel,paymentTF);
+                this.add(addbtn,3,3);
+                this.add(nextBtn,3,4);
+                this.add(lastBtn,3,5);
+                this.add(paidbtn,3,6);
+                this.add(storeBtn,3,7);
+                this.add(storeallBtn,3,8);
+                this.add(readDataBtn,3,9);
+                this.add(exitbtn,3,10);
+                ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
+                this.add(ticketInfoDisplay,3,0);
+                ticketinformation.setText(allTickets);
+                this.add(ticketinformation,3,1);
+                this.setAlignment(Pos.CENTER);
+    }
 }
