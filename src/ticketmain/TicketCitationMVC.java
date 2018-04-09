@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketmain;
 
 import javafx.application.Application;
@@ -16,6 +11,7 @@ import ticket.TicketController;
  *
  * @author Matthew Rodriguez
  * date: February, 23, 2018
+ * Revision Date: April 9, 2018
  */
 
 public class TicketCitationMVC extends Application 

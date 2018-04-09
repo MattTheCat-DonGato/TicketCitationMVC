@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticket;
 
 /**
  *
  * @author Matthew Rodriguez
  * Date: February, 23, 2018
+ * Revision Date: April 9, 2018
  */
 public class Ticket 
 { 
@@ -33,8 +29,8 @@ public class Ticket
     }
  
     /**
-     * This is the main constructor where all the ticket data will be stored for one Ticket object. It takes in 12 parameters
-     * which are described below.
+     * This is the main constructor where all the ticket data will be stored for one Ticket object. 
+     * It takes in 12 parameters which are described below.
      * @param licenseNo The license number of the vehicle
      * @param state The state in which the ticket was issued
      * @param permitNo The permit number of the vehicle
@@ -118,10 +114,6 @@ public class Ticket
     public void setVehicleModel(String vehicleModel) {
         this.vehicleModel = vehicleModel;
     }
-
-    /**
-     * @return the violation
-     */
 
     /**
      * @return the color
@@ -234,5 +226,4 @@ public class Ticket
     public void setPaidticket(boolean paidticket) {
         this.paidticket = paidticket;
     }
-
 }

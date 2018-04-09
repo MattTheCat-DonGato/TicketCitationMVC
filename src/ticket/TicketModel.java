@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticket;
 
 import java.io.BufferedOutputStream;
@@ -14,6 +9,7 @@ import java.util.ArrayList;
  *
  * @author Matthew Rodriguez
  * Date February, 23, 2018
+ * Revision Date: April 9, 2018
  */
 public class TicketModel 
 {
@@ -26,7 +22,7 @@ public class TicketModel
         try
         { 
             out = new OutputStreamWriter(new BufferedOutputStream(
-            new FileOutputStream("Tickets.dat", true))); 
+            new FileOutputStream("Tickets.dat", true)));  /* Open the data file */
         }
         catch(Exception e)
         {
@@ -46,7 +42,7 @@ public class TicketModel
      
      /**
       * The getcurrentTicket() function returns the currently pointed currentTicket object in the ticketDB ArrayList.
-      * @return    the currentTicket object
+      * @return the currentTicket object
       */
     public Ticket getCurrentTicket()
     {
@@ -55,7 +51,7 @@ public class TicketModel
     
     /**
      * The getcurrentTickets() function returns the entire ticketDB ArrayList of Ticket objects.
-     * @return   the ticketDB ArrayList
+     * @return the ticketDB ArrayList
      */
     public ArrayList<Ticket> getCurrentTickets()
     {
@@ -103,13 +99,13 @@ public class TicketModel
                     out.write("Ticket has not been paid.");
                     out.write("\r\n");
                 }
-        out.flush();   
-        System.out.println("Current ticket object stored successfully.");
+        out.flush(); /* flush stream object to the .dat file (append) */
+        System.out.println("Current ticket object stored successfully."); /* Notify that the object has been outputted */
         }
         catch (Exception e)
-                {
-                 System.out.println("Cannot store Data into target text File.");
-                }      
+        {
+        System.out.println("Cannot store Data into target text File."); /* Notify that the Data could not be outputted */
+        }      
     }
 
     /**
@@ -156,12 +152,12 @@ public class TicketModel
                     out.write("\r\n");
                 }
             }
-        out.flush();
-        System.out.println("All objects have been stored successfully");
+        out.flush(); /* flush stream object to the .dat file (append) */
+        System.out.println("All objects have been stored successfully"); /* Notify that the objects has been outputted */
         }
         catch (Exception e)
-                {
-                 System.out.println("Cannot store Data into File.");
-                }      
+        {
+        System.out.println("Cannot store Data into File."); /* Notify that the objects could not be outputted to the file */
+        }      
     }
 }

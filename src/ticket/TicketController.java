@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticket;
 
 import java.io.BufferedReader;
@@ -35,15 +30,7 @@ public class TicketController
         this.ticketView=ticketView;
         attachHandlers();
     }
-     
-   
-     
-   
-     
-  
-     
-   
-    
+ 
     /**
      * The attachHandlers() function will handle all of the actions each of the buttons will do in the TicketCitationMVC program.
      * Within the comments of the source code explains what each button performs.
@@ -63,7 +50,7 @@ public class TicketController
             @Override
             public void handle(ActionEvent event) 
             {
-            // get Fields
+            /* get Fields */
             String licenseNo = ticketView.getLicenseTF().getText();
             String state = ticketView.getStateTF().getText();
             String permitNo = ticketView.getPermitTF().getText();
@@ -78,16 +65,19 @@ public class TicketController
             boolean paidticket;
             paidticket = false;
             
+            /* Create the new Ticket Object with the fields obtained */
             Ticket newTicket = new Ticket(licenseNo, state, permitNo, vehicleModel, violation, color, date, time, location, issuedBy, paymentInfo, paidticket);
+            /* Add it to the Ticket ArrayList */
             ticketModel.setCurrentTicket(newTicket);
+            /* Clear the TextFields in the GUI */
             ticketView.clearFields();
             }               
         });
          
       /* ticketView.getNextBtn()
      Displays the Next Ticket object data of the Ticket ArrayList in the TextArea.
-     Check if the current index number is less than zero.
-     If it is less than zero then increment the index, and update that indexes object data into the TextArea.
+     Check if the current index number is less than the size of the ArrayList.
+     If it is less than the size of the ArrayList then increment the index, and update that indexes object data into the TextArea.
      If index is already at max size limit, then re-display max size indexes object data into TextArea.
      If the list is empty then call TicketViewNoDatabase() in ticketView to throw an exception message to the user.
       */
@@ -96,6 +86,7 @@ public class TicketController
             @Override
             public void handle(ActionEvent event) 
             {
+             //Grab the current ticket object
              Ticket currentTicket = ticketModel.getCurrentTicket();
              // Display Next Ticket in Ticket Data Arraylist
              if (!ticketModel.getCurrentTickets().isEmpty())
@@ -237,23 +228,12 @@ public class TicketController
               {
                    try
                 { 
-                    FileReader in = new FileReader("Tickets.dat");
-                    BufferedReader inputline = new BufferedReader(in);
-                    Boolean line = true;               
-                    while(line = inputline.ready())
+                    FileReader in = new FileReader("Tickets.dat"); /* Input File to read from */
+                    BufferedReader inputline = new BufferedReader(in); /* BufferedReader to read lines in file */
+                    Boolean line = true; /* Flag to see if there is something to be read from file */              
+                    while(line == inputline.ready())
                     {
-                    String licenseNo;
-                    String state;
-                    String permitNo;
-                    String vehicleModel;
-                    String violation;
-                    String color;
-                    String date;
-                    String time;
-                    String location;
-                    String issuedby;
-                    String paymentinfo;
-                    String finalstring;
+                    String licenseNo, state, permitNo, vehicleModel, violation, color, date, time, location, issuedby, paymentinfo, finalstring;
                     Boolean ispaid;
                     licenseNo = inputline.readLine();
                     state = inputline.readLine();
@@ -267,19 +247,21 @@ public class TicketController
                     issuedby = inputline.readLine();
                     paymentinfo = inputline.readLine();
                     finalstring = inputline.readLine();
+                    /* This is used to grab the boolean variable */
                     ispaid = finalstring.matches("Ticket has been paid.");
-                    
+                    /* Create the new Ticket object */
                     Ticket currentTicket = new Ticket(licenseNo,state,permitNo,vehicleModel,violation,color,date,time,location,issuedby,paymentinfo,ispaid);
+                    /* Add it to the database */
                     ticketModel.setCurrentTicket(currentTicket);                           
                     }
-                    in.close();  //close the file
-                    ArrayList<Ticket> currentTickets = ticketModel.ticketDB;
-                    ticketView.TicketViewUpdateAll(currentTickets);
-                    System.out.println("File successfully Read.");
+                    in.close(); /* Close the input file */
+                    ArrayList<Ticket> currentTickets = ticketModel.ticketDB; /* Grab the ArrayList of Tickets */
+                    ticketView.TicketViewUpdateAll(currentTickets); /* Call the TicketViewUpdateAll() function */
+                    System.out.println("File successfully Read."); /* Notify that the file has been read */
             }
             catch(Exception e)
             {
-            System.out.println("Tickets.dat file does not exist.");
+            System.out.println("Tickets.dat file does not exist."); /*Notify that the file doesn't exist*/
             } 
           }
         });

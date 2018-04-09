@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticket;
 
 import java.util.ArrayList;
@@ -20,6 +15,7 @@ import javafx.geometry.Pos;
  *
  * @author Matthew Rodriguez
  * Date: March 23, 2018
+ * Revision Date: April 9, 2018
  */
 public class TicketView extends GridPane
 {
@@ -569,7 +565,7 @@ public class TicketView extends GridPane
     }
     
     /**
-     * This function is only called when there is no ticket database is currently empty.
+     * This function is only called when the ticket database is currently empty.
      */
      public void TicketViewNoDataBase()
     {
@@ -650,7 +646,7 @@ public class TicketView extends GridPane
     /**
      * This function takes in an ArrayList of Tickets called currentTickets and loops through each object printing 
      * out the strings in the text area until the last object's strings are printed. If the paidticket variable is true 
-     * then the variable pt will equal: "Ticket has been paid." otherwise it will equal: "Ticket has not been paid.
+     * then the variable pt will equal: "Ticket has been paid." otherwise it will equal: "Ticket has not been paid."
      * @param currentTickets The ArrayList of Tickets stored in the program
      */
     public void TicketViewUpdateAll(ArrayList<Ticket> currentTickets) 
