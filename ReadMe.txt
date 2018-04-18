@@ -13,6 +13,7 @@ Date: April 9, 2018
 Added Database Operations and removed I/O operations. Also added the JConnector JAR folder to connect to MySQL.
 Also included a data export file of the table/schema used for this project named TicketCitationMVCDatabaseDump.sql.
 Must be imported using MySQL Workbench in order for the schema to be accessed by Java.
+Date: April 17, 2018
 
 Student: Matthew Rodriguez
 Student ID: 20292261
