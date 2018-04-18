@@ -4,18 +4,21 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import DataBaseManagement.Database;
+import java.sql.*;
 
 /**
  *
  * @author Matthew Rodriguez
  * Date February, 23, 2018
- * Revision Date: April 9, 2018
+ * Revision Date: April 17, 2018
  */
 public class TicketModel 
 {
     ArrayList<Ticket> ticketDB = new ArrayList<>(); /*List to hold all the ticket objects */
     Ticket currentTicket = new Ticket(); /* New Ticket object */
     OutputStreamWriter out; /* Output to write to the textfile */
+    Database ourDatabase = Database.getSingletonOfdatabase(); /* Retrieve the single instance of the Database */
     
     public TicketModel()
     {
@@ -158,6 +161,50 @@ public class TicketModel
         catch (Exception e)
         {
         System.out.println("Cannot store Data into File."); /* Notify that the objects could not be outputted to the file */
-        }      
+        }       
     }
+    
+    /**
+     * This function takes in a Ticket object called currentTicket and performs an INSERT SQL statement grabbing the strings of the object, and passing them as the values to be inserted into the selected schema table.
+     * @param currentTicket The ticket object to extract the strings to insert them into the database
+     */
+    public void InsertCurrentTicketToDatabase(Ticket currentTicket)
+    {
+        try
+        {
+            String licenseNo = currentTicket.getLicenseNo();
+            String state = currentTicket.getState();
+            String permitNo = currentTicket.getPermitNo();
+            String vehicleModel= currentTicket.getVehicleModel();
+            String violation = currentTicket.getViolation();
+            String color = currentTicket.getColor();
+            String date = currentTicket.getDate();
+            String time = currentTicket.getTime();
+            String location = currentTicket.getLocation();
+            String issuedBy = currentTicket.getIssuedBy();
+            String paymentInfo = currentTicket.getPaymentInfo();
+            boolean paidticket = currentTicket.isPaidticket();
+            String pt = "";
+    
+            if(paidticket == false)
+            {
+                pt = "Ticket has not been paid."; 
+            }
+            else
+            {
+                pt = "Ticket has been paid.";
+            }         
+           // Create SQL Statement
+           Statement mystatement = ourDatabase.getDbaseName().createStatement();
+           // Write the query command
+           String sql = "insert into ticketsunf (licenseNo, state, permitNo, vehicleModel, violation, color, datestamp, timestamp, location, issuedBy, paymentInfo, ticketPaid) values ('"+licenseNo+"','"+state+"','"+permitNo+"','"+ vehicleModel +"','"+ violation +"','"+ color +"','"+ date +"','"+ time +"','"+ location +"','"+ issuedBy +"','"+ paymentInfo +"','"+ pt +"');";
+           // Execute statement
+           mystatement.executeUpdate(sql);
+           System.out.println("The SQL Query command has been entered. Please check MySQL Workbench for validation.");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Invalid SQL Query command.");
+        }
+    }    
 }

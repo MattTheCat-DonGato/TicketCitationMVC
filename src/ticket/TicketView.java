@@ -10,22 +10,26 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.geometry.Pos;
+import javafx.scene.layout.VBox;
 
 /**
  *
  * @author Matthew Rodriguez
  * Date: March 23, 2018
- * Revision Date: April 9, 2018
+ * Revision Date: April 17, 2018
  */
 public class TicketView extends GridPane
 {
-    private Label titleLabel = new Label("Parking Ticket Citation");    
+    private Label titleLabel = new Label("Parking Ticket Citation");
+    private Label titleLabel2 = new Label("Parking Ticket Citation");
+    private Label titleLabel3 = new Label("Parking Ticket Citation");
+    private Label titleLabel4 = new Label("Parking Ticket Citation");
     private Label licenseLabel = new Label("Enter License Number");
     private TextField licenseTF = new TextField();   
     private Label stateLabel = new Label("Enter State");
     private TextField stateTF = new TextField();
     private Label permitLabel = new Label("Enter Permit Number");
-    private TextField permitTF =new TextField();
+    private TextField permitTF = new TextField();
     private Label vehiclemodelLabel = new Label("Enter Vehicle Model");
     private TextField vmTF = new TextField();  
     private Label violationLabel = new Label("Enter the Violation for Ticket");
@@ -43,8 +47,10 @@ public class TicketView extends GridPane
     private Label paymentLabel = new Label("Enter Payment Information");
     private TextField paymentTF = new TextField();
     
-    Label copyright = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nStore Current Ticket will store the ticket data in Current Ticket Information into a file.\nStore All Tickets will grab all the tickets in the database and store them into a file.\nRead Ticket Data will go through the file of Tickets.dat and display them in the TextArea.\nExit Program will end the session.");
-    Label copyright2 = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nExit Program will end the session.\nThis Graphic User Interface is written for UTRGV Purposes only.\nAll Copyrights Reserved\nThe list is empty. Try adding data first then click on Submit Ticket Data then Next.");
+    Label copyright = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nRead from Local Database will grab all ticket data from MySQL and display it onto the TextArea.\nInsert Current Ticket to Database will store the current ticket displayed in Current Ticket Information into Database Schema in MySQL.\nExit Program will end the session.");
+    Label copyright2 = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nRead from Local Database will grab all ticket data from MySQL and display it onto the TextArea.\nInsert Current Ticket to Database will store the current ticket displayed in Current Ticket Information into Database Schema in MySQL.\nExit Program will end the session.\nThe list is empty.\nTry adding data first into the TextFields then click on Submit Ticket Data then click Next.\nOr you can click on Read from Local Database to grab ticket data from MySQL.");
+    Label copyright3 = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nRead from Local Database will grab all ticket data from MySQL and display it onto the TextArea.\nInsert Current Ticket to Database will store the current ticket displayed in Current Ticket Information into Database Schema in MySQL.\nExit Program will end the session.\nYou cannot insert the current ticket being displayed in Current Ticket Information into the Database.\nReason: Because of the license number is the primary key and it's already in the Database.");
+    Label copyright4 = new Label("Enter data into TextFields then press Submit Ticket Data.\nClick on Next or Previous to move through the tickets that have been added.\nToggle Paid/Unpaid will change if the ticket has been paid or not (TextArea will refresh).\nRead from Local Database will grab all ticket data from MySQL and display it onto the TextArea.\nInsert Current Ticket to Database will store the current ticket displayed in Current Ticket Information into Database Schema in MySQL.\nExit Program will end the session.\nYou cannot have an empty field for any of the TextFields.\nPlease fill each field with acceptable parameters then click the Submit Ticket Data.");
     
     private Button paidbtn = new Button("Toggle Paid/Unpaid");
     private Button addbtn = new Button("Submit Ticket Data");
@@ -53,11 +59,21 @@ public class TicketView extends GridPane
     private Button storeBtn = new Button("Store Current Ticket");
     private Button storeallBtn = new Button("Store All Tickets");
     private Button readDataBtn = new Button("Read Ticket File");
+    private Button connDatabaseBtn = new Button("Read from Local Database");
+    private Button insertToDatabaseBtn = new Button ("Insert Current Ticket to Database");
     private Button exitbtn = new Button("Exit Program");
     
     private Label ticketInfoDisplay = new Label("Current Ticket Information");
     private TextArea ticketinformation = new TextArea(); 
-   
+    
+    VBox labelTFvbox = new VBox(licenseLabel,licenseTF,stateLabel,stateTF,permitLabel,permitTF,vehiclemodelLabel,vmTF,violationLabel,violationTF,colorLabel,colorTF,timeLabel,timeTF,dateLabel,dateTF,locationLabel,locationTF,issuedbyLabel,issuedbyTF,paymentLabel,paymentTF);
+    VBox titlevbox = new VBox(titleLabel,copyright);
+    VBox titlenoListvbox = new VBox(titleLabel2,copyright2);
+    VBox titlenoInsertvbox = new VBox(titleLabel3,copyright3);
+    VBox titleemptyparamvbox = new VBox(getTitleLabel4(),copyright4);
+    VBox buttonvbox = new VBox(addbtn,nextBtn,lastBtn,paidbtn,connDatabaseBtn,insertToDatabaseBtn,exitbtn);
+    VBox infovbox = new VBox(ticketInfoDisplay,ticketinformation);
+ 
     /**
      * @return the titleLabel
      */
@@ -72,6 +88,48 @@ public class TicketView extends GridPane
         this.titleLabel = titleLabel;
     }
 
+     /**
+     * @return the titleLabel2
+     */
+    public Label getTitleLabel2() {
+        return titleLabel2;
+    }
+
+    /**
+     * @param titleLabel2 the titleLabel2 to set
+     */
+    public void setTitleLabel2(Label titleLabel2) {
+        this.titleLabel2 = titleLabel2;
+    }
+     
+    /**
+     * @return the titleLabel3
+     */
+    public Label getTitleLabel3() {
+        return titleLabel3;
+    }
+
+    /**
+     * @param titleLabel3 the titleLabel3 to set
+     */
+    public void setTitleLabel3(Label titleLabel3) {
+        this.titleLabel3 = titleLabel3;
+    }
+    
+     /**
+     * @return the titleLabel4
+     */
+    public Label getTitleLabel4() {
+        return titleLabel4;
+    }
+
+    /**
+     * @param titleLabel4 the titleLabel4 to set
+     */
+    public void setTitleLabel4(Label titleLabel4) {
+        this.titleLabel4 = titleLabel4;
+    }
+    
     /**
      * @return the licenseLabel
      */
@@ -520,6 +578,34 @@ public class TicketView extends GridPane
     public void setReadDataBtn(Button readDataBtn) {
         this.readDataBtn = readDataBtn;
     }
+      
+    /**
+     * @return the connDatabaseBtn
+     */
+    public Button getConnDatabaseBtn() {
+        return connDatabaseBtn;
+    }
+
+    /**
+     * @param connDatabaseBtn the connDatabaseBtn to set
+     */
+    public void setConnDatabaseBtn(Button connDatabaseBtn) {
+        this.connDatabaseBtn = connDatabaseBtn;
+    }
+
+    /**
+     * @return the insertToDatabaseBtn
+     */
+    public Button getInsertToDatabaseBtn() {
+        return insertToDatabaseBtn;
+    }
+
+    /**
+     * @param insertToDatabaseBtn the insertToDatabaseBtn to set
+     */
+    public void setInsertToDatabaseBtn(Button insertToDatabaseBtn) {
+        this.insertToDatabaseBtn = insertToDatabaseBtn;
+    }
 
     /**
      * Removes all of the text inserted into the TextFields.
@@ -545,48 +631,85 @@ public class TicketView extends GridPane
     public TicketView()
     {
                 titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(titleLabel, 0, 0);
-                copyright.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,20));
-                this.add(copyright, 0, 1);
-                this.add(licenseLabel, 0, 2);
-                this.addColumn(0,licenseTF,stateLabel,stateTF,permitLabel,permitTF,vehiclemodelLabel,vmTF,violationLabel,violationTF,colorLabel,colorTF,timeLabel,timeTF,dateLabel,dateTF,locationLabel,locationTF,issuedbyLabel,issuedbyTF,paymentLabel,paymentTF);
-                this.add(addbtn,3,3);
-                this.add(nextBtn,3,4);
-                this.add(lastBtn,3,5);
-                this.add(paidbtn,3,6);
-                this.add(storeBtn,3,7);
-                this.add(storeallBtn,3,8);
-                this.add(readDataBtn,3,9);
-                this.add(exitbtn,3,10);
+                copyright.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,12));
                 ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(ticketInfoDisplay,3,0);
-                this.add(ticketinformation,3,1);
+                this.add(titlevbox,0,0);
+                this.add(labelTFvbox,0,1);
+                this.add(infovbox,1,0);
+                this.add(buttonvbox,1,1);
                 this.setAlignment(Pos.CENTER);
     }
     
     /**
-     * This function is only called when the ticket database is currently empty.
+     * This function is only called when the ticket ArrayList database is currently empty.
      */
      public void TicketViewNoDataBase()
     {
                 this.getChildren().clear();
-                titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(titleLabel, 0, 0);
-                copyright2.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,20));
-                this.add(copyright2, 0, 1);
-                this.add(licenseLabel, 0, 2);
-                this.addColumn(0,licenseTF,stateLabel,stateTF,permitLabel,permitTF,vehiclemodelLabel,vmTF,violationLabel,violationTF,colorLabel,colorTF,timeLabel,timeTF,dateLabel,dateTF,locationLabel,locationTF,issuedbyLabel,issuedbyTF,paymentLabel,paymentTF);
-                this.add(addbtn,3,3);
-                this.add(nextBtn,3,4);
-                this.add(lastBtn,3,5);
-                this.add(paidbtn,3,6);
-                this.add(storeBtn,3,7);
-                this.add(storeallBtn,3,8);
-                this.add(readDataBtn,3,9);
-                this.add(exitbtn,3,10);
+                titleLabel2.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
+                copyright2.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,12));
                 ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(ticketInfoDisplay,3,0);
-                this.add(ticketinformation,3,1);
+                this.add(titlenoListvbox,0,0);
+                this.add(labelTFvbox,0,1);
+                this.add(infovbox,1,0);
+                this.add(buttonvbox,1,1);
+                this.setAlignment(Pos.CENTER);
+    }
+    
+     /**
+      * This function is only called when any of the TextFields are empty.
+      */
+    public void TicketViewEmptyTextFields()
+    {
+                this.getChildren().clear();
+                getTitleLabel4().setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
+                copyright4.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,12));
+                ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
+                this.add(titleemptyparamvbox,0,0);
+                this.add(labelTFvbox,0,1);
+                this.add(infovbox,1,0);
+                this.add(buttonvbox,1,1);
+                this.setAlignment(Pos.CENTER);
+    }
+     /**
+      * This function is only called when the current ticket object trying to be inserted can't because of matching primary keys.
+      * @param currentTicket The ticket object trying to be inserted; Only used so that the ticket info will still be displayed in the TextArea.
+      */
+     public void TicketViewCannotInsertToDatabase(Ticket currentTicket)
+    {
+    String licenseNo = currentTicket.getLicenseNo();
+    String state = currentTicket.getState();
+    String permitNo = currentTicket.getPermitNo();
+    String vehicleModel= currentTicket.getVehicleModel();
+    String violation = currentTicket.getViolation();
+    String color = currentTicket.getColor();
+    String date = currentTicket.getDate();
+    String time = currentTicket.getTime();
+    String location = currentTicket.getLocation();
+    String issuedBy = currentTicket.getIssuedBy();
+    String paymentInfo = currentTicket.getPaymentInfo();
+    boolean paidticket = currentTicket.isPaidticket();
+    String pt = "";
+    
+    if(paidticket == false)
+    {
+       pt = "Ticket has not been paid."; 
+    }
+    else
+    {
+       pt = "Ticket has been paid.";
+    }
+    String info = "License Number: " + licenseNo + "\nState: " + state + "\nPermit Number: " + permitNo + "\nVehicle Model: " + vehicleModel + "\nViolation: " + violation + "\nColor of Vehicle: " + color + "\nDate of Violation: " + date + "\nTime of Violation: " + time + "\nLocation: " + location + "\nTicket Issued By: " + issuedBy + "\nPayment Information: " + paymentInfo + "\n" + pt;
+
+                this.getChildren().clear();
+                titleLabel3.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
+                copyright3.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,12));
+                ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
+                this.add(titlenoInsertvbox,0,0);
+                this.add(labelTFvbox,0,1);
+                this.add(infovbox,1,0);
+                ticketinformation.setText(info);
+                this.add(buttonvbox,1,1);
                 this.setAlignment(Pos.CENTER);
     }
      
@@ -623,23 +746,13 @@ public class TicketView extends GridPane
 
                 this.getChildren().clear();
                 titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(titleLabel, 0, 0);
-                copyright.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,20));
-                this.add(copyright, 0, 1);
-                this.add(licenseLabel, 0, 2);
-                this.addColumn(0,licenseTF,stateLabel,stateTF,permitLabel,permitTF,vehiclemodelLabel,vmTF,violationLabel,violationTF,colorLabel,colorTF,timeLabel,timeTF,dateLabel,dateTF,locationLabel,locationTF,issuedbyLabel,issuedbyTF,paymentLabel,paymentTF);
-                this.add(addbtn,3,3);
-                this.add(nextBtn,3,4);
-                this.add(lastBtn,3,5);
-                this.add(paidbtn,3,6);
-                this.add(storeBtn,3,7);
-                this.add(storeallBtn,3,8);
-                this.add(readDataBtn,3,9);
-                this.add(exitbtn,3,10);
+                copyright.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,12));
                 ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(ticketInfoDisplay,3,0);
+                this.add(titlevbox,0,0);
+                this.add(labelTFvbox,0,1);
+                this.add(infovbox,1,0);
                 ticketinformation.setText(info);
-                this.add(ticketinformation,3,1);
+                this.add(buttonvbox,1,1);
                 this.setAlignment(Pos.CENTER);      
     }    
 
@@ -651,21 +764,10 @@ public class TicketView extends GridPane
      */
     public void TicketViewUpdateAll(ArrayList<Ticket> currentTickets) 
     {
-    String licenseNo;
-    String state;
-    String permitNo;
-    String vehicleModel;
-    String violation;
-    String color;
-    String date;
-    String time;
-    String location;
-    String issuedBy;
-    String paymentInfo;
-    Boolean paidticket;
+    String licenseNo,state,permitNo,vehicleModel,violation,color,date,time,location,issuedBy,paymentInfo;
+    boolean paidticket;
     String pt = "";
-    String allTickets = "";
-    
+    String allTickets = "";    
     for (int i = 0; i < currentTickets.size(); i++)
     {
         Ticket current = (Ticket) currentTickets.get(i);
@@ -687,27 +789,16 @@ public class TicketView extends GridPane
             pt = "Ticket has been paid.";
         
         allTickets += "License Number: " + licenseNo + "\nState: " + state + "\nPermit Number: " + permitNo + "\nVehicle Model: " + vehicleModel + "\nViolation: " + violation + "\nColor of Vehicle: " + color + "\nDate of Violation: " + date + "\nTime of Violation: " + time + "\nLocation: " + location + "\nTicket Issued By: " + issuedBy + "\nPayment Information: " + paymentInfo + "\n" + pt + "\n";
-    }
-    
+    }                 
                 this.getChildren().clear();
                 titleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(titleLabel, 0, 0);
-                copyright.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,20));
-                this.add(copyright, 0, 1);
-                this.add(licenseLabel, 0, 2);
-                this.addColumn(0,licenseTF,stateLabel,stateTF,permitLabel,permitTF,vehiclemodelLabel,vmTF,violationLabel,violationTF,colorLabel,colorTF,timeLabel,timeTF,dateLabel,dateTF,locationLabel,locationTF,issuedbyLabel,issuedbyTF,paymentLabel,paymentTF);
-                this.add(addbtn,3,3);
-                this.add(nextBtn,3,4);
-                this.add(lastBtn,3,5);
-                this.add(paidbtn,3,6);
-                this.add(storeBtn,3,7);
-                this.add(storeallBtn,3,8);
-                this.add(readDataBtn,3,9);
-                this.add(exitbtn,3,10);
+                copyright.setFont(Font.font("Times New Roman", FontWeight.NORMAL, FontPosture.REGULAR,12));
                 ticketInfoDisplay.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC,40));
-                this.add(ticketInfoDisplay,3,0);
+                this.add(titlevbox,0,0);
+                this.add(labelTFvbox,0,1);
+                this.add(infovbox,1,0);
                 ticketinformation.setText(allTickets);
-                this.add(ticketinformation,3,1);
+                this.add(buttonvbox,1,1);
                 this.setAlignment(Pos.CENTER);
     }
 }

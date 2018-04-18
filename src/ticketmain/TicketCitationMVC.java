@@ -14,7 +14,7 @@ import ticket.TicketController;
  * Revision Date: April 9, 2018
  */
 
-public class TicketCitationMVC extends Application 
+public class TicketCitationMVC extends Application
 {    
     @Override
     public void start(Stage primaryStage) 
@@ -32,7 +32,7 @@ public class TicketCitationMVC extends Application
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) 
+    public static void main(String[] args) throws Exception
     {
         launch(args);
     } 
