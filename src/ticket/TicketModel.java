@@ -172,9 +172,9 @@ public class TicketModel
     {
         try
         {
-            String licenseNo = currentTicket.getLicenseNo();
+            int licenseNo = currentTicket.getLicenseNo();
             String state = currentTicket.getState();
-            String permitNo = currentTicket.getPermitNo();
+            int permitNo = currentTicket.getPermitNo();
             String vehicleModel= currentTicket.getVehicleModel();
             String violation = currentTicket.getViolation();
             String color = currentTicket.getColor();
@@ -197,7 +197,7 @@ public class TicketModel
            // Create SQL Statement
            Statement mystatement = ourDatabase.getDbaseName().createStatement();
            // Write the query command
-           String sql = "insert into ticketsunf (licenseNo, state, permitNo, vehicleModel, violation, color, datestamp, timestamp, location, issuedBy, paymentInfo, ticketPaid) values ('"+licenseNo+"','"+state+"','"+permitNo+"','"+ vehicleModel +"','"+ violation +"','"+ color +"','"+ date +"','"+ time +"','"+ location +"','"+ issuedBy +"','"+ paymentInfo +"','"+ pt +"');";
+           String sql = "insert into ticketsunf (licenseNo, state, permitNo, vehicleModel, violation, color, datestamp, timestamp, location, issuedBy, paymentInfo, ticketPaid) values ("+licenseNo+",'"+state+"',"+permitNo+",'"+ vehicleModel +"','"+ violation +"','"+ color +"','"+ date +"','"+ time +"','"+ location +"','"+ issuedBy +"','"+ paymentInfo +"','"+ pt +"');";
            // Execute statement
            mystatement.executeUpdate(sql);
            System.out.println("The SQL Query command has been entered. Please check MySQL Workbench for validation.");

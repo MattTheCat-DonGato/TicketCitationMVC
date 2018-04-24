@@ -13,8 +13,7 @@ import java.sql.*;
  */
 public class Database 
 {
-    private Connection dbaseName; /* Connection for Database */
-    
+    private Connection dbaseName; /* Connection for Database */   
 	private Database() 
         {    
             try
@@ -26,10 +25,8 @@ public class Database
             {
                 System.out.println("Cannot connect to the database.");            
             }           
-	}
-        
-	private static Database singletonOfDatabase = new Database(); /* Create a private singleton of the Database */
-	
+	}     
+	private static Database singletonOfDatabase = new Database(); /* Create a private singleton of the Database */	
         //Create static function to get the private singleton
         public static Database getSingletonOfdatabase() 
 	{    
@@ -39,14 +36,16 @@ public class Database
 	/**
 	 * @return the dbaseName
 	 */
-	public Connection getDbaseName() {
+	public Connection getDbaseName() 
+        {
 		return dbaseName;
 	}
 
 	/**
 	 * @param dbaseName the dbaseName to set
 	 */
-	public void setDbaseName(Connection dbaseName) {
+	public void setDbaseName(Connection dbaseName) 
+        {
 		this.dbaseName = dbaseName;
 	}
 }

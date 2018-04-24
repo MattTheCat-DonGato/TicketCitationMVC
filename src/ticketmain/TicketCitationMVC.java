@@ -22,8 +22,7 @@ public class TicketCitationMVC extends Application
         TicketView root = new TicketView();
         TicketModel ticketmodel = new TicketModel();
         TicketController tc = new TicketController(ticketmodel,root);
-        Scene scene = new Scene(root, 1250, 1000);
-        
+        Scene scene = new Scene(root, 1250, 1000);      
         primaryStage.setTitle("Ticket Citation MVC Mode");
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -8,9 +8,9 @@ package ticket;
  */
 public class Ticket 
 { 
-    private String licenseNo;
+    private int licenseNo;
     private String state;
-    private String permitNo;
+    private int permitNo;
     private String vehicleModel;
     private String violation;
     private String color;
@@ -44,7 +44,7 @@ public class Ticket
      * @param paymentInfo The location where payment must be made.
      * @param paidticket Checks if the ticket was paid or not (true if paid or false if not paid)
      */  
-    public Ticket(String licenseNo, String state, String permitNo, String vehicleModel, String violation, String color, String date, String time, String location, String issuedBy, String paymentInfo, boolean paidticket) {
+    public Ticket(int licenseNo, String state, int permitNo, String vehicleModel, String violation, String color, String date, String time, String location, String issuedBy, String paymentInfo, boolean paidticket) {
         this.licenseNo = licenseNo;
         this.state = state;
         this.permitNo = permitNo;
@@ -62,14 +62,14 @@ public class Ticket
     /**
      * @return the licenseNo
      */
-    public String getLicenseNo() {
+    public int getLicenseNo() {
         return licenseNo;
     }
 
     /**
      * @param licenseNo the licenseNo to set
      */
-    public void setLicenseNo(String licenseNo) {
+    public void setLicenseNo(int licenseNo) {
         this.licenseNo = licenseNo;
     }
 
@@ -90,14 +90,14 @@ public class Ticket
     /**
      * @return the permitNo
      */
-    public String getPermitNo() {
+    public int getPermitNo() {
         return permitNo;
     }
 
     /**
      * @param permitNo the permitNo to set
      */
-    public void setPermitNo(String permitNo) {
+    public void setPermitNo(int permitNo) {
         this.permitNo = permitNo;
     }
 
@@ -167,63 +167,72 @@ public class Ticket
     /**
      * @param location the location to set
      */
-    public void setLocation(String location) {
+    public void setLocation(String location) 
+    {
         this.location = location;
     }
 
     /**
      * @return the issuedBy
      */
-    public String getIssuedBy() {
+    public String getIssuedBy() 
+    {
         return issuedBy;
     }
 
     /**
      * @param issuedBy the issuedBy to set
      */
-    public void setIssuedBy(String issuedBy) {
+    public void setIssuedBy(String issuedBy) 
+    {
         this.issuedBy = issuedBy;
     }
 
     /**
      * @return the violation
      */
-    public String getViolation() {
+    public String getViolation() 
+    {
         return violation;
     }
 
     /**
      * @param violation the violation to set
      */
-    public void setViolation(String violation) {
+    public void setViolation(String violation) 
+    {
         this.violation = violation;
     }
 
     /**
      * @return the paymentInfo
      */
-    public String getPaymentInfo() {
+    public String getPaymentInfo() 
+    {
         return paymentInfo;
     }
 
     /**
      * @param paymentInfo the paymentInfo to set
      */
-    public void setPaymentInfo(String paymentInfo) {
+    public void setPaymentInfo(String paymentInfo) 
+    {
         this.paymentInfo = paymentInfo;
     }
 
     /**
      * @return the paidticket
      */
-    public boolean isPaidticket() {
+    public boolean isPaidticket() 
+    {
         return paidticket;
     }
 
     /**
      * @param paidticket the paidticket to set
      */
-    public void setPaidticket(boolean paidticket) {
+    public void setPaidticket(boolean paidticket) 
+    {
         this.paidticket = paidticket;
     }
 }
